@@ -1,0 +1,9 @@
+# wayland_titlebar_color #2E3440
+hide_window_decorations True
+
+
+# BEGIN_KITTY_THEME
+# Tokyo Night Storm
+include current-theme.conf
+# END_KITTY_THEME
+background_opacity 0.90
