@@ -32,4 +32,10 @@ return require('packer').startup(function(use)
   use 'ray-x/guihua.lua'
   use 'folke/zen-mode.nvim'
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' }
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons',
+    },
+  }
 end)
