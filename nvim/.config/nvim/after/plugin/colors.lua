@@ -4,8 +4,16 @@ require("catppuccin").setup({
     no_italic = true, -- Force no italic
     no_bold = false, -- Force no bold
     no_underline = true, -- Force no underline
+    priority = 1000,
+    term_colors = true,
+    transparent_background = true,
+    dim_inactive = {
+        enabled = false, -- dims the background color of inactive window
+        percentage = 0.15, -- percentage of the shade to apply to the inactive window
+    },
     default_integrations = false,
     integrations = {
+        barbar = true,
         cmp = true,
         nvimtree = true,
         treesitter = true,
