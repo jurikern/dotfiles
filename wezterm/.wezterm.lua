@@ -11,6 +11,9 @@ config.window_decorations = "NONE"
 config.color_scheme = "Catppuccin Mocha"
 config.window_background_opacity = 0.9
 
+config.front_end = "WebGpu"
+config.enable_wayland = false
+
 wezterm.on('window-focus-changed', function(window, pane)
   local overrides = window:get_config_overrides() or {}
   if not window:is_focused() then
@@ -54,19 +57,19 @@ config.keys = {
   },
   {
     key = 'h',
-    mods = 'SHIFT',
+    mods = 'ALT',
     action = act.AdjustPaneSize { 'Left', 5 },
   },
   {
     key = 'j',
-    mods = 'SHIFT',
+    mods = 'ALT',
     action = act.AdjustPaneSize { 'Down', 5 },
   },
   { key = 'k',
-    mods = 'SHIFT', action = act.AdjustPaneSize { 'Up', 5 } },
+    mods = 'ALT', action = act.AdjustPaneSize { 'Up', 5 } },
   {
     key = 'l',
-    mods = 'SHIFT',
+    mods = 'ALT',
     action = act.AdjustPaneSize { 'Right', 5 },
   },
 }
