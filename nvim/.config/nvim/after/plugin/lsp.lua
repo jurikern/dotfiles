@@ -15,7 +15,7 @@ local capabilities = vim.tbl_deep_extend(
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {'lua_ls', 'rust_analyzer', 'gopls'},
+  ensure_installed = {'lua_ls', 'rust_analyzer', 'gopls', 'jdtls'},
   handlers = {
     function(server_name)
       require('lspconfig')[server_name].setup({
