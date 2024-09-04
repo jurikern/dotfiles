@@ -22,7 +22,7 @@ font pango:MesloLGS Nerd Font Mono Bold 12
 
 exec --no-startup-id picom
 
-exec_always --no-startup-id feh --bg-scale ~/backgrounds/cali-background.jpg
+exec_always --no-startup-id feh --bg-scale ~/dotfiles/backgrounds/pirate.jpg
 exec --no-startup-id xrdb -merge ~/.Xresources
 exec_always --no-startup-id setxkbmap -option ctrl:nocaps
 
@@ -65,7 +65,7 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id kitty
+bindsym $mod+Return exec --no-startup-id wezterm
 
 # kill focused window
 bindsym $mod+Shift+q kill

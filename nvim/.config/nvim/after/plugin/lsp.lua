@@ -1,5 +1,7 @@
 local lsp_zero = require('lsp-zero')
 
+vim.diagnostic.config({virtual_text=false})
+
 lsp_zero.on_attach(function(client, bufnr)
   lsp_zero.default_keymaps({buffer = bufnr})
 end)
@@ -15,13 +17,34 @@ local capabilities = vim.tbl_deep_extend(
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {'lua_ls', 'rust_analyzer', 'gopls', 'jdtls'},
+  ensure_installed = {'lua_ls', 'rust_analyzer', 'gopls', 'jdtls', 'ruby_lsp', 'standardrb', 'solargraph'},
   handlers = {
     function(server_name)
       require('lspconfig')[server_name].setup({
         capabilities = capabilities
       })
     end,
+    ["solargraph"] = function()
+        local lspconfig = require("lspconfig")
+        lspconfig.solargraph.setup{
+            cmd = {vim.fn.expand("$HOME/.rbenv/shims/solargraph"), "stdio"},
+            capabilities = cmp_lsp.default_capabilities(capabilities)
+        }
+    end,
+  -- ["ruby_lsp"] = function()
+  --     local lspconfig = require("lspconfig")
+  --     lspconfig.ruby_lsp.setup{
+  --         cmd = {vim.fn.expand("$HOME/.rbenv/shims/ruby-lsp"), "stdio"},
+  --         capabilities = cmp_lsp.default_capabilities(capabilities)
+  --     }
+  -- end,
+  -- ["standardrb"] = function()
+  --     local lspconfig = require("lspconfig")
+  --     lspconfig.standardrola.setup{
+  --         cmd = {vim.fn.expand("$HOME/.rbenv/shims/standardrb"), "stdio"},
+  --         capabilities = cmp_lsp.default_capabilities(capabilities)
+  --     }
+  -- end,
     ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.lua_ls.setup {
