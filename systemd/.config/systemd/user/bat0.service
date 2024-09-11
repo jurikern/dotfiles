@@ -1,0 +1,19 @@
+[Unit]
+
+Description=Dunst low battery notification service
+
+After=dunst.service
+
+[Service]
+
+Type=simple
+
+ExecStart=/bin/bash /home/jkern/.config/dunst/bat0.sh
+
+Restart=always
+
+RestartSec=60
+
+[Install]
+
+WantedBy=default.target
