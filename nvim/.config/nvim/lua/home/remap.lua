@@ -9,9 +9,9 @@ vim.keymap.set("n", "<leader>pa", function()
   })
 end, { noremap = true })
 
-vim.g.diag_vis = false
+vim.g.diag_vis = true
 
-vim.keymap.set("n", "<leader>do", function()
+vim.keymap.set("n", "<leader>se", function()
     if vim.g.diag_vis then
         vim.diagnostic.disable()
         vim.g.diag_vis = false
