@@ -72,6 +72,11 @@ config.keys = {
     mods = 'ALT',
     action = act.AdjustPaneSize { 'Right', 5 },
   },
+  {
+    key = 'x',
+    mods = 'CTRL',
+    action = wezterm.action.CloseCurrentPane { confirm = true },
+  },
 }
 
 return config
