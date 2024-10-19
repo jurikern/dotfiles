@@ -2,7 +2,7 @@ local install_path = require("mason-registry").get_package("jdtls"):get_install_
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = vim.fn.stdpath("data") .. "/site/java/workspace-root/" .. project_name
 
-os.execute("mkdir " .. workspace_dir)
+os.execute("mkdir -p " .. workspace_dir)
 local os
 if vim.fn.has("mac") == 1 then
   os = "mac"
@@ -18,8 +18,12 @@ local config = {
         "java",
         "-Declipse.application=org.eclipse.jdt.ls.core.id1",
         "-Dosgi.bundles.defaultStartLevel=4",
+        "-Declipse.product=org.eclipse.jdt.ls.core.product",
         "-Dlog.protocol=true",
         "-Dlog.level=ALL",
+        "-Xms1g",
+        "-Xmx2G",
+        "-Xbootclasspath/a:" .. install_path .. "lombok.jar",
         "-javaagent:" .. install_path .. "/lombok.jar",
         "--add-modules=ALL-SYSTEM",
         "--add-opens",
