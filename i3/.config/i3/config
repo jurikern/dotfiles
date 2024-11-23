@@ -24,7 +24,7 @@ font pango:MesloLGS Nerd Font Mono Bold 12
 
 exec --no-startup-id picom
 
-exec_always --no-startup-id feh --bg-scale ~/dotfiles/backgrounds/pirate.jpg
+exec_always --no-startup-id feh --bg-scale ~/dotfiles/backgrounds/cali-background.jpg
 exec --no-startup-id xrdb -merge ~/.Xresources
 exec_always --no-startup-id setxkbmap -option ctrl:nocaps
 

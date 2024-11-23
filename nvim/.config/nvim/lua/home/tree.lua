@@ -22,5 +22,4 @@ require("nvim-tree").setup({
 vim.cmd([[
     :highlight NvimTreeNormal guifg=none
 ]])
-
 --:highlight NvimTreeNormal guibg=none
