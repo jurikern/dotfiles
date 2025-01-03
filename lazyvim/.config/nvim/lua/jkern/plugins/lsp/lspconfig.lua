@@ -15,6 +15,17 @@ return {
 
     local keymap = vim.keymap
 
+    vim.g.diag_vis = true
+    keymap.set("n", "<leader>sw", function()
+        if vim.g.diag_vis then
+            vim.diagnostic.enable(false)
+            vim.g.diag_vis = false
+        else
+            vim.diagnostic.enable()
+            vim.g.diag_vis = true
+        end
+    end, { noremap = true })
+
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
       callback = function(ev)
@@ -77,7 +88,6 @@ return {
       end,
 
       ["gopls"] = function()
-        local lspconfig = require("lspconfig")
         lspconfig.gopls.setup{
           settings = {
             gopls =  {
