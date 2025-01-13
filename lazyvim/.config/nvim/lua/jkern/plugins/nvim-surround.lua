@@ -1,6 +1,7 @@
-return {
-  "kylechui/nvim-surround",
-  event = { "VeryLazy" },
-  version = "*",
-  config = true,
-}
+return {}
+-- return {
+--   "kylechui/nvim-surround",
+--   event = { "VeryLazy" },
+--   version = "*",
+--   config = true,
+-- }

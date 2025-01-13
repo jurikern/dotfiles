@@ -1,31 +1,29 @@
-vim.opt.guicursor = ""
 
-vim.opt.nu = true
-vim.opt.relativenumber = true
+vim.cmd("let g:netrw_liststyle = 3")
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+local opt = vim.opt
 
-vim.opt.smartindent = true
+opt.relativenumber = true
+opt.number = true
 
-vim.opt.wrap = false
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.expandtab = true
+opt.autoindent = true
 
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true
+opt.wrap = false
+opt.ignorecase = true
+opt.smartcase = true
 
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
+opt.cursorline = true
 
-vim.opt.termguicolors = true
+opt.termguicolors = true
+opt.background = "dark"
+opt.signcolumn = "yes"
 
-vim.opt.scrolloff = 10
-vim.opt.signcolumn = "yes"
-vim.opt.isfname:append("@-@")
+opt.backspace = "indent,eol,start"
 
-vim.opt.updatetime = 50
+opt.clipboard:append("unnamedplus")
 
-vim.opt.colorcolumn = "80"
+opt.splitright = true
+opt.splitbelow = true

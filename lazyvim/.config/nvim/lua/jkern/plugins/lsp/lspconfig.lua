@@ -1,6 +1,7 @@
 return {
   "neovim/nvim-lspconfig",
-  event = { "BufReadPre", "BufNewFile" },
+  lazy = false,
+  -- event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
@@ -10,6 +11,8 @@ return {
     local lspconfig = require("lspconfig")
 
     local mason_lspconfig = require("mason-lspconfig")
+		local mason_tool_installer = require("mason-tool-installer")
+
 
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
@@ -30,12 +33,6 @@ return {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
       callback = function(ev)
         local opts = { buffer = ev.buf, silent = true }
-
-        opts.desc = "Show LSP references"
-        keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
-
-        opts.desc = "Go to declaration"
-        keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
 
         opts.desc = "Show LSP definitions"
         keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
@@ -74,11 +71,42 @@ return {
 
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
-    local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-    for type, icon in pairs(signs) do
-      local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-    end
+    -- local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+    -- for type, icon in pairs(signs) do
+    --   local hl = "DiagnosticSign" .. type
+    --   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+    -- end
+
+
+		mason_lspconfig.setup({
+			ensure_installed = {
+				"gopls",
+				"ruby_lsp",
+				"rust_analyzer",
+				-- "solargraph",
+				-- "standardrb",
+				"lua_ls",
+			},
+			automatic_installation = false,
+		})
+
+		mason_tool_installer.setup({
+			ensure_installed = {
+				"rubocop",
+				"golangci-lint",
+				"stylua",
+				"isort",
+				"black",
+				"lua-language-server",
+				"gopls",
+				"gofumpt",
+				"golines",
+				"gomodifytags",
+				"gotests",
+				"json-to-struct",
+				"misspell",
+			},
+		})
 
     mason_lspconfig.setup_handlers({
       function(server_name)
@@ -94,6 +122,12 @@ return {
               buildFlags =  {"-tags=integration unit"}
             }
           }
+        }
+      end,
+      ["ruby_lsp"] = function()
+        lspconfig["ruby_lsp"].setup{
+          capabilities = capabilities,
+          -- cmd = { "/Users/jkern/.rbenv/shims/ruby-lsp" }
         }
       end,
       ["lua_ls"] = function()

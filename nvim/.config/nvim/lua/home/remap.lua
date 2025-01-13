@@ -1,17 +1,17 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.NvimTreeOpen)
-vim.keymap.set("n", "<leader>pc", vim.cmd.NvimTreeClose)
-local api = require "nvim-tree.api"
-vim.keymap.set("n", "<leader>pa", function()
-  api.tree.open({
-    path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":h"),
-    find_file = true,
-  })
-end, { noremap = true })
+
+local keymap = vim.keymap
+
+keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>")
+keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>")
+keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>")
+keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>")
+
+keymap.set("n", "<leader>sm", "<cmd>MaximizerToggle<CR>")
 
 vim.g.diag_vis = true
 
-vim.keymap.set("n", "<leader>se", function()
+keymap.set("n", "<leader>sw", function()
     if vim.g.diag_vis then
         vim.diagnostic.disable()
         vim.g.diag_vis = false

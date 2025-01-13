@@ -1,49 +1,43 @@
-require("catppuccin").setup({
-    flavour = "mocha", -- latte, frappe, macchiato, mocha
-    show_end_of_buffer = true, -- shows the '~' characters after the end of buffers
-    no_italic = true, -- Force no italic
-    no_bold = false, -- Force no bold
-    no_underline = true, -- Force no underline
-    priority = 1000,
-    term_colors = true,
-    transparent_background = true,
-    dim_inactive = {
-        enabled = false, -- dims the background color of inactive window
-        percentage = 0.15, -- percentage of the shade to apply to the inactive window
-    },
-    default_integrations = false,
-    integrations = {
-        barbar = true,
-        cmp = true,
-        nvimtree = true,
-        treesitter = true,
-        harpoon = true,
-    },
-})
+local bg = "#011628"
+local bg_dark = "#011423"
+local bg_highlight = "#143652"
+local bg_search = "#0A64AC"
+local bg_visual = "#275378"
+local fg = "#CBE0F0"
+local fg_dark = "#B4D0E9"
+local fg_gutter = "#627E97"
+local border = "#547998"
 
 require("tokyonight").setup({
-    style = "storm", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
-    transparent = true, -- Enable this to disable setting the background color
-    terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
-    styles = {
-        -- Style to be applied to different syntax groups
-        -- Value is any valid attr-list value for `:help nvim_set_hl`
-        comments = { italic = false },
-        keywords = { italic = false },
-        -- Background styles. Can be "dark", "transparent" or "normal"
-        sidebars = "dark", -- style for sidebars, see below
-        floats = "dark", -- style for floating windows
-    },
-    on_colors = function (colors)
-        colors.fg_gutter = "#b2b8cf"
-    end
+  style = "storm",
+  transparent = true,
+  on_colors = function(colors)
+    colors.bg = bg
+    colors.bg_dark = bg_dark
+    colors.bg_float = bg_dark
+    colors.bg_highlight = bg_highlight
+    colors.bg_popup = bg_dark
+    colors.bg_search = bg_search
+    colors.bg_sidebar = bg_dark
+    colors.bg_statusline = bg_dark
+    colors.bg_visual = bg_visual
+    colors.border = border
+    colors.fg = fg
+    colors.fg_dark = fg_dark
+    colors.fg_float = fg
+    colors.fg_gutter = fg_gutter
+    colors.fg_sidebar = fg_dark
+  end,
 })
 
-vim.cmd.colorscheme("catppuccin")
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none"  })
+vim.cmd.colorscheme("tokyonight")
 
-vim.api.nvim_set_hl(0, 'LineNrAbove', { fg='#89dceb', bold=true })
-vim.api.nvim_set_hl(0, 'LineNr', { fg='#cdd6f4', bold=true })
-vim.api.nvim_set_hl(0, 'LineNrBelow', { fg='#eba0ac', bold=true })
+local api = vim.api
+
+api.nvim_set_hl(0, "Normal", { bg = "none" })
+api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none"  })
+
+api.nvim_set_hl(0, 'LineNrAbove', { fg='#89dceb', bold=true })
+api.nvim_set_hl(0, 'LineNr', { fg='#cdd6f4', bold=true })
+api.nvim_set_hl(0, 'LineNrBelow', { fg='#eba0ac', bold=true })

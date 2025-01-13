@@ -1,4 +1,4 @@
-local lsp_zero = require('lsp-zero')
+local lsp_zero = require("lsp-zero")
 
 lsp_zero.on_attach(function(client, bufnr)
   lsp_zero.default_keymaps({buffer = bufnr})
@@ -13,98 +13,54 @@ local capabilities = vim.tbl_deep_extend(
     vim.lsp.protocol.make_client_capabilities(),
     cmp_lsp.default_capabilities())
 
-require('mason').setup({})
-require('mason-lspconfig').setup({
-  ensure_installed = {'lua_ls', 'rust_analyzer', 'gopls', 'jdtls', 'ruby_lsp', 'standardrb', 'solargraph', 'clangd'},
+require("mason").setup({})
+
+require("mason-tool-installer").setup({
+	ensure_installed = {
+		"rubocop",
+		"golangci-lint",
+		"stylua",
+		"isort",
+		"black",
+		"lua-language-server",
+		"gopls",
+		"gofumpt",
+		"golines",
+		"gomodifytags",
+		"gotests",
+		"json-to-struct",
+		"misspell",
+	},
+})
+
+require("mason-lspconfig").setup({
+  ensure_installed = {
+    "lua_ls",
+    "rust_analyzer",
+    "gopls",
+    "ruby_lsp",
+    "solargraph",
+    "clangd"
+  },
   handlers = {
     function(server_name)
-      require('lspconfig')[server_name].setup({
+      require("lspconfig")[server_name].setup({
         capabilities = capabilities
       })
     end,
     ["solargraph"] = function()
         local lspconfig = require("lspconfig")
         lspconfig.solargraph.setup{
-            cmd = {vim.fn.expand("$HOME/.rbenv/shims/solargraph"), "stdio"},
+            cmd = {vim.fn.expand("/Users/jkern/.rbenv/shims/solargraph"), "stdio"},
             capabilities = cmp_lsp.default_capabilities(capabilities)
         }
     end,
-  -- ["ruby_lsp"] = function()
-  --     local lspconfig = require("lspconfig")
-  --     lspconfig.ruby_lsp.setup{
-  --         cmd = {vim.fn.expand("$HOME/.rbenv/shims/ruby-lsp"), "stdio"},
-  --         capabilities = cmp_lsp.default_capabilities(capabilities)
-  --     }
-  -- end,
-  -- ["standardrb"] = function()
-  --     local lspconfig = require("lspconfig")
-  --     lspconfig.standardrola.setup{
-  --         cmd = {vim.fn.expand("$HOME/.rbenv/shims/standardrb"), "stdio"},
-  --         capabilities = cmp_lsp.default_capabilities(capabilities)
-  --     }
-  -- end,
-    ["jdtls"] = function()
-        local install_path = require("mason-registry").get_package("jdtls"):get_install_path()
-        local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-        local workspace_dir = vim.fn.stdpath("data") .. "/site/java/workspace-root/" .. project_name
-        os.execute("mkdir -p " .. workspace_dir)
-        local os
-        if vim.fn.has("mac") == 1 then
-          os = "mac"
-        elseif vim.fn.has("unix") == 1 then
-          os = "linux"
-        elseif vim.fn.has("win32") == 1 then
-          os = "win"
-        end
-        local config = {
-            cmd = {
-                "java",
-                "-Declipse.application=org.eclipse.jdt.ls.core.id1",
-                "-Dosgi.bundles.defaultStartLevel=4",
-                "-Declipse.product=org.eclipse.jdt.ls.core.product",
-                "-Dlog.protocol=true",
-                "-Dlog.level=ALL",
-                "-Xms1g",
-                "-Xmx2G",
-                "-Xbootclasspath/a:" .. install_path .. "lombok.jar",
-                "-javaagent:" .. install_path .. "/lombok.jar",
-                "--add-modules=ALL-SYSTEM",
-                "--add-opens",
-                "java.base/java.util=ALL-UNNAMED",
-                "--add-opens",
-                "java.base/java.lang=ALL-UNNAMED",
-                "-jar",
-                vim.fn.glob(install_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
-                "-configuration",
-                install_path .. "/config_" .. os,
-                "-data",
-                workspace_dir,
-            },
-            settings = {
-                java = {
-                    signatureHelp = {enabled = true},
-                    import = {enabled = true},
-                    rename = {enabled = true}
-                },
-                completion = {
-                    filteredTypes = {
-                          "com.sun.*",
-                          "io.micrometer.shaded.*",
-                          "java.awt.*",
-                          "jdk.*",
-                          "sun.*",
-                    },
-                },
-                sources = {
-                    organizeImports = {
-                        starThreshold = 9999;
-                        staticStarThreshold = 9999;
-                    },
-                }
-            },
-            root_dir = vim.fs.dirname(vim.fs.find({'gradlew', '.git', 'mvnw'}, { upward = true })[1]),
+    ["ruby_lsp"] = function()
+        local lspconfig = require("lspconfig")
+        lspconfig.ruby_lsp.setup{
+            cmd = {vim.fn.expand("/Users/jkern/.rbenv/shims/ruby-lsp"), "stdio"},
+            capabilities = cmp_lsp.default_capabilities(capabilities)
         }
-        require('jdtls').start_or_attach(config)
     end,
     ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")
@@ -137,13 +93,13 @@ local cmp_select = { behavior = cmp.SelectBehavior.Select }
 cmp.setup({
     snippet = {
         expand = function(args)
-            require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+            require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
         end,
     },
     mapping = cmp.mapping.preset.insert({
-        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+        ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
+        ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
+        ["<C-y>"] = cmp.mapping.confirm({ select = true }),
         ["<C-Space>"] = cmp.mapping.complete(),
     }),
 })
@@ -151,223 +107,10 @@ cmp.setup({
 vim.diagnostic.config({
     float = {
         focusable = false,
-        style = "minimal",
+        style  = "minimal",
         border = "rounded",
         source = "always",
         header = "",
         prefix = "",
     },
 })
-
-local rt = require("rust-tools")
-
-rt.setup({
-  server = {
-    on_attach = function(_, bufnr)
-      -- Hover actions
-      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-      -- Code action groups
-      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-    end,
-  },
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
