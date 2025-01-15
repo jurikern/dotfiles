@@ -1,0 +1,40 @@
+{
+  "position": "top",
+  "modules-left": ["sway/workspaces"],
+  "modules-center": ["sway/window"],
+  "modules-right": ["network", "pulseaudio", "cpu", "temperature", "memory", "disk", "battery", "clock"],
+  "clock": {
+    "format": "{:%I:%M %p}",
+    "tooltip": false
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "Bat:{capacity}%"
+  },
+  "network": {
+    "format": "{ifname}",
+    "format-wifi": "{essid}:{signalStrength}%",
+    "format-disconnected": "Disconnected",
+    "tooltip-format": "{ifname}:{ipaddr}/{cidr}:{gwaddr}:{netmask}"
+  },
+  "pulseaudio": {
+      "format": "Vol:{volume}%",
+      "format-muted": "Muted",
+      "on-click": "pavucontrol"
+  },
+  "cpu": {
+  	"interval": 10,
+	"format": "CPU:{usage}%"
+  },
+  "memory": {
+	"interval": 30,
+	"format": "Mem:{percentage}%"
+  },
+  "disk": {
+    "format": "Disk:{used}",
+    "unit": "GB"
+  }
+}
