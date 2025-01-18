@@ -1,19 +1,22 @@
 bindkey -v
 
 eval "$(zoxide init zsh)"
-alias la="eza -la --icons=always"
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
-eval "$(starship init zsh)"
-
-# PROMPT=' %F{44}%1~:%f '
+PROMPT=' %F{44}%1~:%f '
 zstyle ':completion:*' menu select
 
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+setopt SHARE_HISTORY
+HISTFILE=$HOME/.zhistory
+SAVEHIST=1000
+HISTSIZE=999
+setopt HIST_EXPIRE_DUPS_FIRST
+
+bindkey '\e[A' history-search-backward
+bindkey '\e[B' history-search-forward

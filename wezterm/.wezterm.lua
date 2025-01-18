@@ -2,14 +2,14 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 local act = wezterm.action
 
-config.font = wezterm.font("MesloLGS Nerd Font Mono")
-config.font_size = 16
+config.font = wezterm.font("CaskaydiaCove Nerd Font")
+config.font_size = 12
 
 config.enable_tab_bar = false
 config.window_decorations = "RESIZE"
 
 config.color_scheme = "Catppuccin Mocha"
-config.window_background_opacity = 0.9
+config.window_background_opacity = 0.95
 
 config.front_end = "WebGpu"
 config.enable_wayland = false
@@ -17,7 +17,7 @@ config.enable_wayland = false
 wezterm.on('window-focus-changed', function(window, pane)
   local overrides = window:get_config_overrides() or {}
   if not window:is_focused() then
-    overrides.window_background_opacity = 0.7
+    overrides.window_background_opacity = 0.9
   else
     overrides.window_background_opacity = nil
   end
