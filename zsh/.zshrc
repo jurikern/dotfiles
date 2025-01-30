@@ -1,13 +1,15 @@
 bindkey -v
 
+export EDITOR=nvim
+
 eval "$(zoxide init zsh)"
 
 PROMPT=' %F{44}%1~:%f '
 zstyle ':completion:*' menu select
 
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
