@@ -1,8 +1,8 @@
 {
   "position": "top",
-  "modules-left": ["sway/workspaces"],
-  "modules-center": ["sway/window"],
-  "modules-right": ["network", "pulseaudio", "cpu", "temperature", "memory", "disk", "battery", "clock"],
+  "modules-left": ["sway/window"],
+  "modules-center": ["sway/workspaces"],
+  "modules-right": ["network", "bluetooth", "pulseaudio", "cpu", "memory", "disk", "battery", "clock"],
   "clock": {
     "format": "{:%I:%M %p}",
     "tooltip": false
@@ -16,9 +16,9 @@
   },
   "network": {
     "format": "{ifname}",
-    "format-wifi": "{essid}:{signalStrength}%",
+    "format-wifi": "{essid}",
     "format-disconnected": "Disconnected",
-    "tooltip-format": "{ifname}:{ipaddr}/{cidr}:{gwaddr}:{netmask}"
+    "tooltip-format": "{ifname}\nSignal\t{signalStrength}%\nIP\t{ipaddr}/{cidr}\nGateway\t{gwaddr}\nMask\t{netmask}"
   },
   "pulseaudio": {
       "format": "Vol:{volume}%",
@@ -36,5 +36,13 @@
   "disk": {
     "format": "Disk:{used}",
     "unit": "GB"
-  }
+  },
+"bluetooth": {
+	"format": "{status}",
+	"format-connected": "{device_alias}",
+	"tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+	"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+	"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+}
 }
