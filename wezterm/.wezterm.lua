@@ -8,18 +8,17 @@ config.font_size = 12
 config.enable_tab_bar = false
 config.window_decorations = "RESIZE"
 
-config.color_scheme = "Catppuccin Mocha"
-config.window_background_opacity = 0.95
+config.color_scheme = "Tokyo Night"
 
 config.front_end = "WebGpu"
-config.enable_wayland = false
+config.enable_wayland = true
 
 wezterm.on('window-focus-changed', function(window, pane)
   local overrides = window:get_config_overrides() or {}
   if not window:is_focused() then
-    overrides.window_background_opacity = 0.9
+    overrides.window_background_opacity = 0.90
   else
-    overrides.window_background_opacity = nil
+    overrides.window_background_opacity = 0.95
   end
   window:set_config_overrides(overrides)
 end)
