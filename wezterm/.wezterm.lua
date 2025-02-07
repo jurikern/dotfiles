@@ -10,8 +10,7 @@ config.window_decorations = "RESIZE"
 
 config.color_scheme = "Tokyo Night"
 
-config.front_end = "WebGpu"
-config.enable_wayland = true
+config.enable_wayland = false
 
 wezterm.on('window-focus-changed', function(window, pane)
   local overrides = window:get_config_overrides() or {}
