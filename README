@@ -1,0 +1,14 @@
+set -Ux BEMENU_OPTS "
+                                --ignorecase\
+                                --no-overlap \
+                                --fn 'CaskaydiaCove Nerd Font 12' \
+                                --list '5'\
+                                --binding 'vim' \
+                                --prompt 'run' \
+                                --ch '20' \
+                                --bdr '#c0caf5'\
+                                --hb '#292e42' --hf '#c0caf5'\
+                                --nb '#1a1b26' --nf '#a9b1d6'\
+                                --ab '#1a1b26' --af '#a9b1d6'\
+                                --fb '#1a1b26' --ff '#a9b1d6'\
+                            "

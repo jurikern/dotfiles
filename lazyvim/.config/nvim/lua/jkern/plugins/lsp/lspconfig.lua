@@ -1,7 +1,7 @@
 return {
   "neovim/nvim-lspconfig",
   lazy = false,
-  -- event = { "BufReadPre", "BufNewFile" },
+  event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
@@ -12,7 +12,6 @@ return {
 
     local mason_lspconfig = require("mason-lspconfig")
 		local mason_tool_installer = require("mason-tool-installer")
-
 
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
@@ -80,9 +79,9 @@ return {
 
 		mason_lspconfig.setup({
 			ensure_installed = {
-				"gopls",
-				"ruby_lsp",
-				"rust_analyzer",
+				-- "gopls",
+				-- "ruby_lsp",
+				-- "rust_analyzer",
 				-- "solargraph",
 				-- "standardrb",
 				"lua_ls",
@@ -92,19 +91,19 @@ return {
 
 		mason_tool_installer.setup({
 			ensure_installed = {
-				"rubocop",
-				"golangci-lint",
-				"stylua",
-				"isort",
-				"black",
-				"lua-language-server",
-				"gopls",
-				"gofumpt",
-				"golines",
-				"gomodifytags",
-				"gotests",
-				"json-to-struct",
-				"misspell",
+				-- "rubocop",
+				-- "golangci-lint",
+				-- "stylua",
+				-- "isort",
+				-- "black",
+				-- "lua-language-server",
+				-- "gopls",
+				-- "gofumpt",
+				-- "golines",
+				-- "gomodifytags",
+				-- "gotests",
+				-- "json-to-struct",
+				-- "misspell",
 			},
 		})
 
@@ -115,21 +114,21 @@ return {
         })
       end,
 
-      ["gopls"] = function()
-        lspconfig.gopls.setup{
-          settings = {
-            gopls =  {
-              buildFlags =  {"-tags=integration unit"}
-            }
-          }
-        }
-      end,
-      ["ruby_lsp"] = function()
-        lspconfig["ruby_lsp"].setup{
-          capabilities = capabilities,
-          -- cmd = { "/Users/jkern/.rbenv/shims/ruby-lsp" }
-        }
-      end,
+      -- ["gopls"] = function()
+      --   lspconfig.gopls.setup{
+      --     settings = {
+      --       gopls =  {
+      --         buildFlags =  {"-tags=integration unit"}
+      --       }
+      --     }
+      --   }
+      -- end,
+      -- ["ruby_lsp"] = function()
+      --   lspconfig["ruby_lsp"].setup{
+      --     capabilities = capabilities,
+      --     -- cmd = { "/Users/jkern/.rbenv/shims/ruby-lsp" }
+      --   }
+      -- end,
       ["lua_ls"] = function()
         lspconfig["lua_ls"].setup({
           capabilities = capabilities,
