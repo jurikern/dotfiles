@@ -10,6 +10,7 @@ config.window_decorations = "RESIZE"
 
 config.color_scheme = "Tokyo Night"
 
+
 config.enable_wayland = false
 
 wezterm.on('window-focus-changed', function(window, pane)
