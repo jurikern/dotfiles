@@ -1,0 +1,33 @@
+# This file contains fish universal variable definitions.
+# VERSION: 3.0
+SETUVAR --export BEMENU_OPTS:\x0a\x20\x20\x20\x20\x2d\x2dignorecase\x20\x20\x20\x20\x2d\x2dno\x2doverlap\x20\x20\x20\x20\x20\x2d\x2dfn\x20\x27CaskaydiaCove\x20Nerd\x20Font\x2012\x27\x20\x20\x20\x20\x20\x2d\x2dlist\x20\x275\x27\x20\x20\x20\x20\x2d\x2dbinding\x20\x27vim\x27\x20\x20\x20\x20\x20\x2d\x2dprompt\x20\x27run\x27\x20\x20\x20\x20\x20\x2d\x2dch\x20\x2720\x27\x20\x20\x20\x20\x20\x2d\x2dbdr\x20\x27\x23c0caf5\x27\x20\x20\x20\x20\x2d\x2dhb\x20\x27\x23292e42\x27\x20\x2d\x2dhf\x20\x27\x23c0caf5\x27\x20\x20\x20\x20\x2d\x2dnb\x20\x27\x231a1b26\x27\x20\x2d\x2dnf\x20\x27\x23a9b1d6\x27\x20\x20\x20\x20\x2d\x2dab\x20\x27\x231a1b26\x27\x20\x2d\x2daf\x20\x27\x23a9b1d6\x27\x20\x20\x20\x20\x2d\x2dfb\x20\x27\x231a1b26\x27\x20\x2d\x2dff\x20\x27\x23a9b1d6\x27
+SETUVAR __fish_initialized:3400
+SETUVAR fish_color_autosuggestion:brblack
+SETUVAR fish_color_cancel:\x2dr
+SETUVAR fish_color_command:blue
+SETUVAR fish_color_comment:red
+SETUVAR fish_color_cwd:green
+SETUVAR fish_color_cwd_root:red
+SETUVAR fish_color_end:green
+SETUVAR fish_color_error:brred
+SETUVAR fish_color_escape:brcyan
+SETUVAR fish_color_history_current:\x2d\x2dbold
+SETUVAR fish_color_host:normal
+SETUVAR fish_color_host_remote:yellow
+SETUVAR fish_color_normal:normal
+SETUVAR fish_color_operator:brcyan
+SETUVAR fish_color_param:cyan
+SETUVAR fish_color_quote:yellow
+SETUVAR fish_color_redirection:cyan\x1e\x2d\x2dbold
+SETUVAR fish_color_search_match:bryellow\x1e\x2d\x2dbackground\x3dbrblack
+SETUVAR fish_color_selection:white\x1e\x2d\x2dbold\x1e\x2d\x2dbackground\x3dbrblack
+SETUVAR fish_color_status:red
+SETUVAR fish_color_user:brgreen
+SETUVAR fish_color_valid_path:\x2d\x2dunderline
+SETUVAR fish_greeting:
+SETUVAR fish_key_bindings:fish_default_key_bindings
+SETUVAR fish_pager_color_completion:normal
+SETUVAR fish_pager_color_description:yellow\x1e\x2di
+SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
+SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
+SETUVAR fish_pager_color_selected_background:\x2dr
