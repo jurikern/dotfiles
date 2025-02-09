@@ -15,9 +15,9 @@ config.enable_wayland = false
 wezterm.on('window-focus-changed', function(window, pane)
   local overrides = window:get_config_overrides() or {}
   if not window:is_focused() then
-    overrides.window_background_opacity = 0.90
+    overrides.window_background_opacity = 0.85
   else
-    overrides.window_background_opacity = 0.95
+    overrides.window_background_opacity = 0.90
   end
   window:set_config_overrides(overrides)
 end)
