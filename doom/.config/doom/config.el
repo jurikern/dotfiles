@@ -34,6 +34,14 @@
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-tokyo-night)
 
+;; (set-frame-parameter nil 'alpha-background 98)
+
+;; (add-to-list 'default-frame-alist '(alpha-background . 90))
+
+;; set transparency
+(set-frame-parameter (selected-frame) 'alpha-background 90)
+(add-to-list 'default-frame-alist '(alpha-background . 90))
+
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
