@@ -1,12 +1,9 @@
 configuration{
-    modi: "run,window,combi";
-    icon-theme: "Oranchelo";
     show-icons: true;
-    terminal: "ghostty";
+    terminal: "wezterm";
     drun-display-format: "{icon} {name}";
-    location: 0;
     disable-history: false;
     hide-scrollbar: true;
 }
 
-@theme "catppuccin-mocha"
+@theme "tokyo-night"

@@ -80,7 +80,7 @@ return {
 		mason_lspconfig.setup({
 			ensure_installed = {
 				-- "gopls",
-				-- "ruby_lsp",
+				"ruby_lsp",
 				-- "rust_analyzer",
 				-- "solargraph",
 				-- "standardrb",
@@ -91,12 +91,12 @@ return {
 
 		mason_tool_installer.setup({
 			ensure_installed = {
-				-- "rubocop",
+				"rubocop",
 				-- "golangci-lint",
 				-- "stylua",
 				-- "isort",
 				-- "black",
-				-- "lua-language-server",
+				"lua-language-server",
 				-- "gopls",
 				-- "gofumpt",
 				-- "golines",
@@ -123,12 +123,12 @@ return {
       --     }
       --   }
       -- end,
-      -- ["ruby_lsp"] = function()
-      --   lspconfig["ruby_lsp"].setup{
-      --     capabilities = capabilities,
-      --     -- cmd = { "/Users/jkern/.rbenv/shims/ruby-lsp" }
-      --   }
-      -- end,
+      ["ruby_lsp"] = function()
+        lspconfig["ruby_lsp"].setup{
+          capabilities = capabilities,
+          cmd = { vim.fn.expand("$HOME/.rbenv/shims/ruby-lsp") }
+        }
+      end,
       ["lua_ls"] = function()
         lspconfig["lua_ls"].setup({
           capabilities = capabilities,

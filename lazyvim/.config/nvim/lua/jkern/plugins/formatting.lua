@@ -11,15 +11,13 @@ return {
 				},
 			},
 			formatters_by_ft = {
-				go = { "goimports", "gofmt" },
-				rust = { "rustfmt", lsp_format = "fallback" },
-				ruby = { "rubocop", "solargraph" },
-				javascript = { "prettier" },
+				-- go = { "goimports", "gofmt" },
+				-- rust = { "rustfmt", lsp_format = "fallback" },
+				ruby = { "rubocop" },
 				json = { "prettier" },
 				yaml = { "prettier" },
 				markdown = { "prettier" },
 				lua = { "stylua" },
-				python = { "isort", "black" },
 			},
 		})
 
