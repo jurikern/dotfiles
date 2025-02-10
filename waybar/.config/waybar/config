@@ -26,8 +26,8 @@
   },
   "cpu": {
   	"interval": 5,
-	"format": "CPU:{load} {avg_frequency}GHz",
-	"tooltip": false
+	  "format": "CPU:{usage}%",
+	  "tooltip": false
   },
   "memory": {
 	"interval": 10,
@@ -41,8 +41,8 @@
     "tooltip-format": "Total\t{total}\nUsed\t{used}\nFree\t{free}"
   },
 "bluetooth": {
-	"format": "{status}",
-	"format-connected": "{device_alias}",
+	"format": "{controller_alias}:{status}",
+	"format-connected": "{controller_alias}:{num_connections}",
 	"tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
 	"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
 	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
