@@ -7,6 +7,8 @@ return {
 		conform.setup({
 			formatters = {
 				rubocop = {
+          command = require("conform.util").find_executable({
+            vim.fn.expand("$HOME/.rbenv/shims/rubocop") }, "rubocop"),
 					args = { "--server", "--auto-correct-all", "--stderr", "--force-exclusion", "--stdin", "$FILENAME" },
 				},
 			},

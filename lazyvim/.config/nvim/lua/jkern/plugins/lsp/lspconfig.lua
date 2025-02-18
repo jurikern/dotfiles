@@ -5,13 +5,13 @@ return {
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
-    { "folke/neodev.nvim", opts = {} },
+    { "folke/neodev.nvim",                   opts = {} },
   },
   config = function()
     local lspconfig = require("lspconfig")
 
     local mason_lspconfig = require("mason-lspconfig")
-		local mason_tool_installer = require("mason-tool-installer")
+    -- local mason_tool_installer = require("mason-tool-installer")
 
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
@@ -19,13 +19,13 @@ return {
 
     vim.g.diag_vis = true
     keymap.set("n", "<leader>sw", function()
-        if vim.g.diag_vis then
-            vim.diagnostic.enable(false)
-            vim.g.diag_vis = false
-        else
-            vim.diagnostic.enable()
-            vim.g.diag_vis = true
-        end
+      if vim.g.diag_vis then
+        vim.diagnostic.enable(false)
+        vim.g.diag_vis = false
+      else
+        vim.diagnostic.enable()
+        vim.g.diag_vis = true
+      end
     end, { noremap = true })
 
     vim.api.nvim_create_autocmd("LspAttach", {
@@ -77,35 +77,34 @@ return {
     -- end
 
 
-		mason_lspconfig.setup({
-			ensure_installed = {
-				-- "gopls",
-				"ruby_lsp",
-				-- "rust_analyzer",
-				-- "solargraph",
-				-- "standardrb",
-				"lua_ls",
-			},
-			automatic_installation = false,
-		})
+    mason_lspconfig.setup({
+      ensure_installed = {
+        -- "gopls",
+        "ruby_lsp",
+        -- "rust_analyzer",
+        -- "solargraph",
+        -- "standardrb",
+        "lua_ls",
+      },
+      automatic_installation = false,
+    })
 
-		mason_tool_installer.setup({
-			ensure_installed = {
-				"rubocop",
-				-- "golangci-lint",
-				-- "stylua",
-				-- "isort",
-				-- "black",
-				"lua-language-server",
-				-- "gopls",
-				-- "gofumpt",
-				-- "golines",
-				-- "gomodifytags",
-				-- "gotests",
-				-- "json-to-struct",
-				-- "misspell",
-			},
-		})
+    -- mason_tool_installer.setup({
+    --   ensure_installed = {
+    --     "rubocop",
+    --     -- "golangci-lint",
+    --     -- "isort",
+    --     -- "black",
+    --     "lua-language-server",
+    --     -- "gopls",
+    --     -- "gofumpt",
+    --     -- "golines",
+    --     -- "gomodifytags",
+    --     -- "gotests",
+    --     "json-to-struct",
+    --     "misspell",
+    --   },
+    -- })
 
     mason_lspconfig.setup_handlers({
       function(server_name)
@@ -124,7 +123,7 @@ return {
       --   }
       -- end,
       ["ruby_lsp"] = function()
-        lspconfig["ruby_lsp"].setup{
+        lspconfig["ruby_lsp"].setup {
           capabilities = capabilities,
           cmd = { vim.fn.expand("$HOME/.rbenv/shims/ruby-lsp") }
         }
