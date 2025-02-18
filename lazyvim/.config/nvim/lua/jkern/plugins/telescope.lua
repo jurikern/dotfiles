@@ -7,8 +7,9 @@ return {
       "nvim-telescope/telescope-fzf-native.nvim",
       build = "make",
     },
+    "nvim-telescope/telescope-file-browser.nvim",
+    "nvim-telescope/telescope-frecency.nvim",
     "nvim-tree/nvim-web-devicons",
-    "folke/todo-comments.nvim",
   },
   config = function()
     local telescope = require("telescope")
@@ -25,15 +26,31 @@ return {
           },
         },
       },
-      extensions = {                                                                                
-        fzf = {                                                                                     
+      extensions = {
+        fzf = {
           fuzzy = true,
           override_generic_sorter = true,
           override_file_sorter = true,
           case_mode = "smart_case"
         },
+        file_browser = {
+          theme = "ivy",
+          hijack_netrw = true,
+
+          mappings = {
+            ["i"] = {
+            },
+            ["n"] = {
+            },
+          },
+
+
+        },
       },
     })
+    require('telescope').load_extension('fzf')
+    require("telescope").load_extension("file_browser")
+    require("telescope").load_extension("frecency")
 
     local keymap = vim.keymap
 
@@ -41,7 +58,6 @@ return {
     keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>")
     keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>")
     keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>")
-    keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>")
+    keymap.set("n", "<space>fb", ":Telescope file_browser<cr>")
   end,
 }
-
