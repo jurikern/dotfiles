@@ -27,7 +27,6 @@ return {
       },
       actions = {
         open_file = {
-          quit_on_open = true,
           window_picker = {
             enable = false,
           },
@@ -37,7 +36,7 @@ return {
         custom = { ".DS_Store" },
       },
       git = {
-        ignore = false,
+        ignore = true,
       },
     })
 

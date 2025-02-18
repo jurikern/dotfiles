@@ -26,6 +26,14 @@ return {
           },
         },
       },
+      pickers = {
+        find_files = {
+          theme = "ivy",
+        },
+        buffers = {
+          theme = "ivy"
+        }
+      },
       extensions = {
         fzf = {
           fuzzy = true,
@@ -58,6 +66,7 @@ return {
     keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>")
     keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>")
     keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>")
-    keymap.set("n", "<space>fb", ":Telescope file_browser<cr>")
+    keymap.set("n", "<leader>fd", "<cmd>Telescope file_browser<cr>")
+    keymap.set("n", "<leader>bb", "<cmd>Telescope buffers<cr>")
   end,
 }
