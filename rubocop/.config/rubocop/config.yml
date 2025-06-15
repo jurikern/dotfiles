@@ -6,13 +6,11 @@ AllCops:
     - 'tmp/**/*'
     - '.git/**/*'
     - 'bin/*'
-  TargetRubyVersion: 3.4.1
+  TargetRubyVersion: 3.4.2
   SuggestExtensions: false
 Style/FrozenStringLiteralComment:
   Enabled: false
 Style/Documentation:
-  Enabled: false
-StringLiterals:
   Enabled: false
 Metrics/MethodLength:
   Enabled: false
@@ -22,3 +20,5 @@ Metrics/ClassLength:
   Enabled: false
 Metrics/ModuleLength:
   Enabled: false
+Style/StringLiterals:
+  Enabled: true
