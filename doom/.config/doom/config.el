@@ -11,9 +11,18 @@
 
 (remove-hook 'ruby-mode-hook #'apheleia-mode)
 
+(use-package! exec-path-from-shell
+  :config
+  (exec-path-from-shell-initialize))
+
 (after! flycheck
   (setq-default flycheck-disabled-checkers '(ruby-reek ruby-rubylint))
   (flycheck-add-mode 'ruby-rubocop 'ruby-mode))
+
+(add-hook 'ruby-mode-hook #'lsp)
+(add-hook 'ruby-mode-hook #'company-mode)
+(after! company
+  (setq company-backends '(company-capf company-files company-dabbrev)))
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
