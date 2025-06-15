@@ -9,6 +9,12 @@
 (setq user-full-name "Juri Kern"
       user-mail-address "juri@secbase.us")
 
+(remove-hook 'ruby-mode-hook #'apheleia-mode)
+
+(after! flycheck
+  (setq-default flycheck-disabled-checkers '(ruby-reek ruby-rubylint))
+  (flycheck-add-mode 'ruby-rubocop 'ruby-mode))
+
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
 ;; - `doom-font' -- the primary font to use
