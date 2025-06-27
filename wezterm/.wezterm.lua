@@ -3,9 +3,9 @@ local config = wezterm.config_builder()
 local act = wezterm.action
 
 config.font = wezterm.font("CaskaydiaCove Nerd Font")
-config.font_size = 12
+config.font_size = 15
 
-config.enable_tab_bar = false
+config.enable_tab_bar = true
 config.window_decorations = "RESIZE"
 
 config.color_scheme = "Tokyo Night"
@@ -16,9 +16,9 @@ config.enable_wayland = false
 wezterm.on('window-focus-changed', function(window, pane)
   local overrides = window:get_config_overrides() or {}
   if not window:is_focused() then
-    overrides.window_background_opacity = 0.85
-  else
     overrides.window_background_opacity = 0.90
+  else
+    overrides.window_background_opacity = 0.95
   end
   window:set_config_overrides(overrides)
 end)
