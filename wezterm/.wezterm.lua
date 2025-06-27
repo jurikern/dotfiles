@@ -6,12 +6,13 @@ config.font = wezterm.font("CaskaydiaCove Nerd Font")
 config.font_size = 15
 
 config.enable_tab_bar = true
-config.window_decorations = "RESIZE"
+config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 
 config.color_scheme = "Tokyo Night"
 
 
 config.enable_wayland = false
+config.macos_window_background_blur = 10
 
 wezterm.on('window-focus-changed', function(window, pane)
   local overrides = window:get_config_overrides() or {}
@@ -22,6 +23,13 @@ wezterm.on('window-focus-changed', function(window, pane)
   end
   window:set_config_overrides(overrides)
 end)
+
+config.window_padding = {
+  left = 2,
+  right = 0,
+  top = 0,
+  bottom = 0,
+}
 
 config.keys = {
   {
