@@ -10,7 +10,6 @@ config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 
 config.color_scheme = "Tokyo Night"
 
-
 config.enable_wayland = false
 config.macos_window_background_blur = 10
 
@@ -32,6 +31,8 @@ config.window_padding = {
 }
 
 config.keys = {
+  { key = "LeftArrow", mods = "OPT", action = wezterm.action { SendString = "\x1bb" } },
+  { key = "RightArrow", mods = "OPT", action = wezterm.action { SendString = "\x1bf" } },
   {
     key = '\\',
     mods = 'CTRL',
@@ -72,8 +73,11 @@ config.keys = {
     mods = 'ALT',
     action = act.AdjustPaneSize { 'Down', 5 },
   },
-  { key = 'k',
-    mods = 'ALT', action = act.AdjustPaneSize { 'Up', 5 } },
+  {
+    key = 'k',
+    mods = 'ALT',
+    action = act.AdjustPaneSize { 'Up', 5 }
+  },
   {
     key = 'l',
     mods = 'ALT',
