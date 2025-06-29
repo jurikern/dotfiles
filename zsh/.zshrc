@@ -1,8 +1,11 @@
 bindkey -v
 
+alias ssh_arch="wezterm cli spawn --domain-name arch"
+
 export EDITOR="nvim"
 # eval "$(rbenv init - zsh)"
 eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
 
 # PROMPT=' %F{44}%1~:%f '
 

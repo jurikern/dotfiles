@@ -13,6 +13,13 @@ config.color_scheme = "Tokyo Night"
 config.enable_wayland = false
 config.macos_window_background_blur = 10
 
+config.ssh_domains = {
+  {
+    name = 'arch',
+    remote_address = 'arch',
+  },
+}
+
 wezterm.on('window-focus-changed', function(window, pane)
   local overrides = window:get_config_overrides() or {}
   if not window:is_focused() then
@@ -31,7 +38,7 @@ config.window_padding = {
 }
 
 config.keys = {
-  { key = "LeftArrow", mods = "OPT", action = wezterm.action { SendString = "\x1bb" } },
+  { key = "LeftArrow",  mods = "OPT", action = wezterm.action { SendString = "\x1bb" } },
   { key = "RightArrow", mods = "OPT", action = wezterm.action { SendString = "\x1bf" } },
   {
     key = '\\',
