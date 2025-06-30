@@ -6,7 +6,7 @@ AllCops:
     - 'tmp/**/*'
     - '.git/**/*'
     - 'bin/*'
-  TargetRubyVersion: 3.4.2
+  TargetRubyVersion: 3.4.4
   SuggestExtensions: false
 Style/FrozenStringLiteralComment:
   Enabled: false
