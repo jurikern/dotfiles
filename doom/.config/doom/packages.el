@@ -48,4 +48,8 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
 
-(package! exec-path-from-shell)
+(use-package eglot-booster
+  :after
+  eglot
+  :config
+  (eglot-booster-mode))
