@@ -1,0 +1,45 @@
+set -x KUBECONFIG $HOME/.config/minikube/config
+
+sudo pacman -S libvirt qemu dnsmasq ebtables dmidecode minikube kubectl
+sudo usermod -aG libvirt $(whoami)
+sudo systemctl enable libvirtd.service
+sudo systemctl start libvirtd.service
+
+sudo nvim /boot/loader/entries/2025-02-01_08-32-42_linux.conf
+
+===
+# Created by: archinstall
+# Created on: 2025-02-01_08-32-42
+title   Arch Linux (linux)
+linux   /vmlinuz-linux
+initrd  /initramfs-linux.img
+options cryptdevice=PARTUUID=ba0119c2-feba-4ed9-b0ca-c854a96a14e9:root root=/dev/mapper/root zswap.enabled=0 rootflags=subvol=@ rw rootfstype=btrfs systemd.unified_cgroup_hierarchy=legacy
+===
+
+sudo nvim /etc/systemd/system/cgroup-v1-controllers.service
+
+===
+[Unit]
+Description=Mount legacy cgroup v1 controllers
+DefaultDependencies=no
+Before=sysinit.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/mount -t cgroup -o devices devices /sys/fs/cgroup/devices
+ExecStart=/usr/bin/mount -t cgroup -o freezer freezer /sys/fs/cgroup/freezer
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+===
+
+sudo systemctl daemon-reload
+sudo systemctl enable cgroup-v1-controllers.service
+sudo systemctl start cgroup-v1-controllers.service
+
+mount | grep cgroup
+virt-host-validate
+
+minikube config set driver kvm2
+minikube start
