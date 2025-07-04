@@ -40,6 +40,12 @@
   (setq-local eldoc-documentation-functions nil)
   (eldoc-mode -1))
 
+(defun eglot-force-reconnect ()
+  (interactive)
+  (save-buffer)
+  (when-let ((eglot-server (eglot-current-server)))
+    (eglot-reconnect eglot-server)))
+
 (add-hook 'eglot-managed-mode-hook #'eldoc-on-demand-only)
 
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
@@ -97,4 +103,5 @@
 (add-hook 'ruby-mode-hook #'eglot-ensure)
 (map! :map ruby-mode-map
       :localleader
+      :desc "Reconnect LSP (force reindex)" "w" #'eglot-force-reconnect
       :desc "Format buffer" "f" #'eglot-format-buffer)
