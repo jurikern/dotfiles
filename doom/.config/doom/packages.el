@@ -53,3 +53,5 @@
   eglot
   :config
   (eglot-booster-mode))
+(package! dired-rsync)
+(package! exec-path-from-shell)

@@ -98,6 +98,11 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+(use-package! exec-path-from-shell
+  :config
+  (exec-path-from-shell-initialize))
+
 (setq eglot-server-programs
       '((ruby-mode . ("ruby-lsp"))))
 (add-hook 'ruby-mode-hook #'eglot-ensure)
@@ -105,3 +110,35 @@
       :localleader
       :desc "Reconnect LSP (force reindex)" "w" #'eglot-force-reconnect
       :desc "Format buffer" "f" #'eglot-format-buffer)
+
+(defvar rsync-default-destination "arch:/var/src/"
+  "Default destination path for rsync.")
+
+(defun rsync-current-file (destination)
+  (interactive
+   (list (read-string "Rsync file to: " rsync-default-destination)))
+  (let ((file (buffer-file-name)))
+    (if file
+        (async-shell-command
+         (format "rsync -avz --delete '%s' '%s'" file destination))
+      (message "This buffer is not visiting a file."))))
+
+(defvar rsync-project-destination "arch:/var/src/"
+  "Default rsync target directory for full project sync.")
+
+(defun rsync-current-project (destination)
+  (interactive
+   (list (read-string "Rsync project to: " rsync-project-destination)))
+  (let ((project-root (projectile-project-root)))
+    (if project-root
+        (async-shell-command
+         (format "rsync -avz --delete --exclude \".git/\" --exclude \"tmp/\" '%s' '%s'" (file-name-as-directory project-root) destination))
+      (message "Not in a project."))))
+
+(map! :leader
+      :desc "Rsync current file"
+      "c y" #'rsync-current-file)
+
+(map! :leader
+      :desc "Rsync current project"
+      "c p" #'rsync-current-project)
