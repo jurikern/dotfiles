@@ -142,3 +142,9 @@
 (map! :leader
       :desc "Rsync current project"
       "c p" #'rsync-current-project)
+
+(add-hook 'ruby-mode-hook
+          (lambda ()
+            (setq ruby-indent-level 2
+                  ruby-deep-indent-paren nil)))
+(setq-default ruby-indent-level 2)

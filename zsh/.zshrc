@@ -6,6 +6,7 @@ export EDITOR="nvim"
 # eval "$(rbenv init - zsh)"
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
+source <(fzf --zsh)
 
 # PROMPT=' %F{44}%1~:%f '
 

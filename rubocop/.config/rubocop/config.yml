@@ -22,3 +22,5 @@ Metrics/ModuleLength:
   Enabled: false
 Style/StringLiterals:
   Enabled: true
+Layout/IndentationWidth:
+  Width: 2
