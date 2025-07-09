@@ -39,8 +39,7 @@
   :init
   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
   (add-to-list 'completion-at-point-functions #'cape-file)
-  (add-to-list 'completion-at-point-functions #'cape-keyword)
-  (add-to-list 'completion-at-point-functions #'cape-yasnippet))
+  (add-to-list 'completion-at-point-functions #'cape-keyword))
 
 (setq eglot-ignored-server-capabilities '(:documentHighlightProvider :hoverProvider))
 (fset #'jsonrpc--log-event #'ignore)
