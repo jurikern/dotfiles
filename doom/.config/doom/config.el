@@ -27,12 +27,33 @@
 (set-frame-parameter (selected-frame) 'alpha '(97 95))
 (add-to-list 'default-frame-alist '(alpha 97 95))
 
+(use-package corfu
+  :init
+  (global-corfu-mode)
+  (setq corfu-auto t
+        corfu-auto-delay 0.2
+        corfu-auto-prefix 2)
+)
+
+(use-package cape
+  :init
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  (add-to-list 'completion-at-point-functions #'cape-keyword)
+  (add-to-list 'completion-at-point-functions #'cape-yasnippet))
+
 (setq eglot-ignored-server-capabilities '(:documentHighlightProvider :hoverProvider))
 (fset #'jsonrpc--log-event #'ignore)
 (setq eglot-events-buffer-size 0)
 (setq eglot-sync-connect nil)
-(setq company-idle-delay 0.2)
-(setq company-minimum-prefix-length 2)
+(setq eldoc-idle-delay 1.0)
+(setq eglot-send-changes-idle-time 0.5)
+(setq doom-modeline-icon nil
+      doom-modeline-hud nil
+      doom-modeline-buffer-state-icon nil)
+(setq org-persist nil)
+;; (setq company-idle-delay 0.2)
+;; (setq company-minimum-prefix-length 2)
 
 (defun eldoc-on-demand-only ()
   (interactive)
