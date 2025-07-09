@@ -13,7 +13,7 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({ { import = "jkern.plugins" }, { import = "jkern.plugins.lsp" } }, {
+require("lazy").setup({ { import = "jkern.plugins" } }, {
   checker = {
     enabled = true,
     notify = false,

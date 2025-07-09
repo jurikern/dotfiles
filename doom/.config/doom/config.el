@@ -148,3 +148,8 @@
             (setq ruby-indent-level 2
                   ruby-deep-indent-paren nil)))
 (setq-default ruby-indent-level 2)
+;; (add-hook 'ruby-mode-hook #'(lambda () (smartparens-mode -1)))
+(defun disable-ruby-do-end-pair ()
+  (sp-local-pair 'ruby-mode "do" "end" :actions nil))
+
+(add-hook 'ruby-mode-hook #'disable-ruby-do-end-pair)
