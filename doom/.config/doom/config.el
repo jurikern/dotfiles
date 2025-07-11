@@ -42,6 +42,7 @@
   (add-to-list 'completion-at-point-functions #'cape-keyword))
 
 (setq eglot-ignored-server-capabilities '(:documentHighlightProvider :hoverProvider))
+
 (fset #'jsonrpc--log-event #'ignore)
 (setq eglot-events-buffer-size 0)
 (setq eglot-sync-connect nil)
@@ -170,6 +171,8 @@
 (setq-default ruby-indent-level 2)
 ;; (add-hook 'ruby-mode-hook #'(lambda () (smartparens-mode -1)))
 (defun disable-ruby-do-end-pair ()
-  (sp-local-pair 'ruby-mode "do" "end" :actions nil))
+  (sp-with-modes '(ruby-mode)
+    (sp-local-pair "do" "end" :actions nil)
+    (sp-local-pair "|" nil :actions nil)))
 
 (add-hook 'ruby-mode-hook #'disable-ruby-do-end-pair)
