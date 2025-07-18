@@ -1,5 +1,7 @@
 bindkey -v
 
+export KUBECONFIG="$HOME/.kube/kubeconfig"
+
 alias ssh_arch="wezterm cli spawn --domain-name arch"
 export PATH="$HOME/.config/emacs/bin:$PATH"
 export EDITOR="nvim"

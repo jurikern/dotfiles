@@ -43,3 +43,39 @@ virt-host-validate
 
 minikube config set driver kvm2
 minikube start
+
+minikube ip
+=> 192.168.39.231
+
+minikube ssh -- ss -tuln | grep 8443
+sudo iptables -I INPUT -p tcp --dport 8443 -j ACCEPT
+sudo iptables-save | sudo tee /etc/iptables/iptables.rules
+
+ssh -L 8443:192.168.39.231:8443 arch
+
+scp arch:~/.minikube/ca.crt ./
+scp arch:~/.minikube/profiles/minikube/client.crt ./
+scp arch:~/.minikube/profiles/minikube/client.key ./
+
+~/.kube/kubeconfig
+
+apiVersion: v1
+kind: Config
+clusters:
+- name: minikube
+  cluster:
+    server: https://localhost:8443
+    certificate-authority: ./ca.crt
+contexts:
+- name: minikube
+  context:
+    cluster: minikube
+    user: minikube
+current-context: minikube
+users:
+- name: minikube
+  user:
+    client-certificate: ./client.crt
+    client-key: ./client.key
+
+KUBECONFIG=~/.kube/kubeconfig kubectl get nodes
