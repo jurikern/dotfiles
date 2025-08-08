@@ -41,7 +41,7 @@
   (add-to-list 'completion-at-point-functions #'cape-file)
   (add-to-list 'completion-at-point-functions #'cape-keyword))
 
-(setq eglot-ignored-server-capabilities '(:documentHighlightProvider :hoverProvider))
+(setq eglot-ignored-server-capabilities '(:documentHighlightProvider :hoverProvider :workspace/didChangeWorkspaceFolders))
 
 (fset #'jsonrpc--log-event #'ignore)
 (setq eglot-events-buffer-size 0)
@@ -125,11 +125,27 @@
   (exec-path-from-shell-initialize))
 
 (setq eglot-server-programs
-      '((ruby-mode . ("ruby-lsp"))))
+      '((ruby-mode . ("ruby-lsp"))
+        (java-mode . ("~/dev/tools/bin/jdtls"
+                      "-data" "~/src/java"))))
+
 (add-hook 'ruby-mode-hook #'eglot-ensure)
+(add-hook 'java-mode-hook #'eglot-ensure)
+
 (map! :map ruby-mode-map
       :localleader
       :desc "Reconnect LSP (force reindex)" "w" #'eglot-force-reconnect
+      :desc "Format buffer" "f" #'eglot-format-buffer)
+
+(defun eglot-safe-reconnect ()
+  (interactive)
+  (when (eglot-managed-p)
+    (eglot-shutdown (eglot-current-server)))
+  (eglot-ensure))
+
+(map! :map java-mode-map
+      :localleader
+      :desc "Reconnect LSP (force reindex)" "w" #'eglot-safe-reconnect
       :desc "Format buffer" "f" #'eglot-format-buffer)
 
 (defvar rsync-default-destination "arch:/var/src/"

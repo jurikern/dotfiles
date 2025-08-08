@@ -30,3 +30,8 @@ HISTFILE=$HOME/.zhistory
 SAVEHIST=10000
 HISTSIZE=999
 setopt HIST_EXPIRE_DUPS_FIRST
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+export PATH="$HOME/dev/tools/bin:$PATH"
