@@ -1,8 +1,5 @@
 add_newline = false
 
-[times]
-disabled = true
-
 [directory]
 style = "bold #7AA2F7"  # Blue-ish bright for directory
 
@@ -25,7 +22,6 @@ disabled = true
 disabled = true
 
 [character]
-success_symbol = "➜ "
-error_symbol = "➜ "
-vicmd_symbol = "➜ "
-style = "bold #C0CAF5"  # Light purple-ish for prompt symbol
+success_symbol = "[➜](bold #C0CAF5) "
+error_symbol = "[➜](bold #C0CAF5) "
+vicmd_symbol = "[➜](bold #C0CAF5) "
