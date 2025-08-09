@@ -1,1 +1,31 @@
 add_newline = false
+
+[times]
+disabled = true
+
+[directory]
+style = "bold #7AA2F7"  # Blue-ish bright for directory
+
+[battery]
+disabled = true
+
+[git_branch]
+disabled = true
+
+[git_status]
+disabled = true
+
+[java]
+disabled = true
+
+[ruby]
+disabled = true
+
+[python]
+disabled = true
+
+[character]
+success_symbol = "➜ "
+error_symbol = "➜ "
+vicmd_symbol = "➜ "
+style = "bold #C0CAF5"  # Light purple-ish for prompt symbol
