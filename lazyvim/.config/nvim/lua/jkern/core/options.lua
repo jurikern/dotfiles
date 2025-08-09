@@ -26,3 +26,10 @@ opt.clipboard:append("unnamedplus")
 
 opt.splitright = true
 opt.splitbelow = true
+
+vim.diagnostic.config({
+  virtual_text = true,  -- show inline error text
+  signs = true,         -- show gutter signs
+  underline = true,     -- underline problematic code
+  update_in_insert = false,
+})

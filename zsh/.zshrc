@@ -34,4 +34,6 @@ setopt HIST_EXPIRE_DUPS_FIRST
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-export PATH="$HOME/dev/tools/bin:$PATH"
+export PATH="$HOME/dev/tools/jdtls/bin:$PATH"
+export PATH="/opt/homebrew/opt/tree-sitter-cli/bin:$PATH"
+export PATH="$HOME/Library/Python/3.9/bin:$PATH"

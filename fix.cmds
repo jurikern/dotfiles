@@ -1,0 +1,16 @@
+# jdtls
+wget "https://www.eclipse.org/downloads/download.php?file=/jdtls/milestones/1.49.0/jdt-language-server-1.49.0-202507311558.tar.gz" \
+     -O jdt-language-server-1.49.0.tar.gz
+tar -xvzf jdt-language-server-*.tar.gz -C ~/dev/tools/jdtls
+
+# Luarocks
+ pip3 install --user hererocks
+
+ 1003  curl -L -o luarocks-3.9.2.tar.gz https://luarocks.org/releases/luarocks-3.9.2.tar.gz
+ 1004  tar zxpf luarocks-3.9.2.tar.gz
+ 1005  ls -latr
+ 1006  cd luarocks-3.9.2
+ 1007  ./configure --prefix=$HOME/.local/share/nvim/lazy-rocks/hererocks --with-lua-include=$HOME/.local/share/nvim/lazy-rocks/hererocks/include
+ 1008  make
+ 1009  make install
+ 1010  ~/.local/share/nvim/lazy-rocks/hererocks/bin/luarocks --version
