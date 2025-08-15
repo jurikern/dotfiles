@@ -55,3 +55,5 @@
   (eglot-booster-mode))
 (package! dired-rsync)
 (package! exec-path-from-shell)
+(package! string-inflection
+  :recipe (:host github :repo "akicho8/string-inflection" :branch "main"))

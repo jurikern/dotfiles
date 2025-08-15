@@ -9,7 +9,17 @@ return {
       highlight = {
         enable = true,
       },
-      ensure_installed = {},
+      ensure_installed = {
+        "ruby",
+        "embedded_template",
+        "lua",
+        "json",
+        "java",
+        "yaml",
+        "bash",
+        "markdown",
+        "markdown_inline",
+      },
       ignore_install = {},
       indent = { enable = true },
       modules = {},

@@ -192,6 +192,3 @@
     (sp-local-pair "|" nil :actions nil)))
 
 (add-hook 'ruby-mode-hook #'disable-ruby-do-end-pair)
-
-(package! string-inflection
-  :recipe (:host github :repo "akicho8/string-inflection" :branch "main"))
