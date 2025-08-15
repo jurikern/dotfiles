@@ -1,0 +1,20 @@
+# frozen_string_literal: true
+
+require 'time'
+
+if ENV['ONLINE_JUDGE'].nil?
+  $stdin  = File.open('input.txt', 'r')
+  $stdout = File.open('output.txt', 'w')
+end
+
+start = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+
+def solve
+  arr = gets
+  puts arr
+end
+
+t = gets.to_i
+t.times { solve }
+
+warn "Run time : #{Process.clock_gettime(Process::CLOCK_MONOTONIC) - start}"
