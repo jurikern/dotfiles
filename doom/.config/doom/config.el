@@ -180,6 +180,12 @@
       :desc "Rsync current project"
       "c p" #'rsync-current-project)
 
+(map! :leader
+      (:prefix ("t" . "tmux")
+       :desc "Run in tmux"          "r" #'+tmux/run
+       :desc "cd to current dir"    "h" #'+tmux/cd-to-here
+       :desc "cd to project root"   "p" #'+tmux/cd-to-project))
+
 (add-hook 'ruby-mode-hook
           (lambda ()
             (setq ruby-indent-level 2
