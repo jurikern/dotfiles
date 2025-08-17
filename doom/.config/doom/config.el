@@ -126,7 +126,7 @@
 
 (setq eglot-server-programs
       '((ruby-mode . ("ruby-lsp"))
-        (java-mode . ("~/dev/tools/bin/jdtls"
+        (java-mode . ("~/dev/tools/jdtls/bin/jdtls"
                       "-data" "~/src/java"))))
 
 (add-hook 'ruby-mode-hook #'eglot-ensure)
@@ -145,7 +145,7 @@
 
 (map! :map java-mode-map
       :localleader
-      :desc "Reconnect LSP (force reindex)" "w" #'eglot-safe-reconnect
+      :desc "Reconnect LSP (force reindex)" "w" #'eglot-force-reconnect
       :desc "Format buffer" "f" #'eglot-format-buffer)
 
 (defvar rsync-default-destination "arch:/var/src/"
