@@ -30,19 +30,23 @@ return {
         local keymap = vim.keymap
 
         local opts = { noremap = true, silent = true }
-
-        local function in_bundle()
-          local uv = vim.uv or vim.loop
-          local cwd = uv.cwd()
-          local function exists(p) return uv.fs_stat(p) ~= nil end
-          return exists(cwd .. "/Gemfile") or exists(cwd .. "/.bundle")
-        end
+        local util = require("lspconfig.util")
 
         lspconfig.ruby_lsp.setup({
           capabilities = capabilities,
           on_attach = on_attach,
-          cmd = in_bundle() and { "bundle", "exec", "ruby-lsp" } or { "ruby-lsp" },
-          init_options = { formatter = "none" }
+          cmd = { "ruby-lsp" },
+          init_options = { formatter = "none" },
+          root_dir = util.root_pattern(".git", ".ruby-version", ".tool-versions"),
+          on_new_config = function(config, root)
+            config.cmd_env = {
+              BUNDLE_GEMFILE = nil,
+              BUNDLE_PATH = nil,
+              BUNDLE_WITH = nil,
+              BUNDLE_WITHOUT = nil,
+              RUBYOPT = nil,
+            }
+          end,
         })       
     end
   },
@@ -52,18 +56,11 @@ return {
     opts = function(_, opts)
       opts.formatters = opts.formatters or {}
 
-      local function in_bundle()
-        local uv = vim.uv or vim.loop
-        local cwd = uv.cwd()
-        local function exists(p) return uv.fs_stat(p) ~= nil end
-        return exists(cwd .. "/Gemfile") or exists(cwd .. "/.bundle")
-      end
-
       opts.formatters.rubocop = vim.tbl_deep_extend("force", opts.formatters.rubocop or {}, {
-        command = in_bundle() and "bundle" or "rubocop",
+        command = "rubocop",
         args = (function()
           local base = { "rubocop", "--server", "--auto-correct-all", "--stderr", "--force-exclusion", "--stdin", "$FILENAME" }
-          return in_bundle() and vim.list_extend({ "exec" }, base) or base
+          return base
         end)(),
         stdin = true,
       })
