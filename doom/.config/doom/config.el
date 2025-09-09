@@ -120,6 +120,10 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+
 (use-package! exec-path-from-shell
   :config
   (exec-path-from-shell-initialize))

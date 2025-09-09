@@ -1,0 +1,20 @@
+[
+  {
+    "context": "Editor && !menu",
+    "bindings": {
+      ", space": "command_palette::Toggle",
+      ", /": "pane::DeploySearch",
+      ", f": "file_finder::Toggle",
+      ", b b": "tab_switcher::Toggle",
+      ", w v": "pane::SplitVertical",
+      ", w s": "pane::SplitHorizontal",
+      ", t": "workspace::NewCenterTerminal"
+    }
+  },
+  {
+    "context": "Editor && !menu",
+    "bindings": {
+      ", b n": "pane::ActivateNextItem"
+    }
+  }
+]
