@@ -37,13 +37,13 @@
 
 (use-package cape
   :init
-  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-  (add-to-list 'completion-at-point-functions #'cape-file)
-  (add-to-list 'completion-at-point-functions #'cape-keyword))
+  (dolist (capf '(cape-dabbrev cape-file cape-keyword cape-symbol))
+    (add-to-list 'completion-at-point-functions capf)))
 
 (setq eglot-ignored-server-capabilities '(:documentHighlightProvider :hoverProvider :workspace/didChangeWorkspaceFolders))
 
 (fset #'jsonrpc--log-event #'ignore)
+(setq jsonrpc-debug-level 0)
 (setq eglot-events-buffer-size 0)
 (setq eglot-sync-connect nil)
 (setq eldoc-idle-delay 1.0)
@@ -152,7 +152,7 @@
       :desc "Reconnect LSP (force reindex)" "w" #'eglot-force-reconnect
       :desc "Format buffer" "f" #'eglot-format-buffer)
 
-(defvar rsync-default-destination "arch:/var/src/"
+(defvar rsync-default-destination "devtest86:/home/vagrant/avenger"
   "Default destination path for rsync.")
 
 (defun rsync-current-file (destination)
@@ -164,7 +164,7 @@
          (format "rsync -avz --delete '%s' '%s'" file destination))
       (message "This buffer is not visiting a file."))))
 
-(defvar rsync-project-destination "arch:/var/src/"
+(defvar rsync-project-destination "devtest86:/home/vagrant/avenger"
   "Default rsync target directory for full project sync.")
 
 (defun rsync-current-project (destination)
@@ -195,10 +195,13 @@
             (setq ruby-indent-level 2
                   ruby-deep-indent-paren nil)))
 (setq-default ruby-indent-level 2)
-;; (add-hook 'ruby-mode-hook #'(lambda () (smartparens-mode -1)))
-(defun disable-ruby-do-end-pair ()
-  (sp-with-modes '(ruby-mode)
-    (sp-local-pair "do" "end" :actions nil)
-    (sp-local-pair "|" nil :actions nil)))
 
-(add-hook 'ruby-mode-hook #'disable-ruby-do-end-pair)
+(after! smartparens
+  ;; This block applies changes specifically to ruby-mode
+  (sp-with-modes '(ruby-mode)
+    ;; 1. Correctly disable 'do' to 'end' autopairing
+    (sp-local-pair "do" "end" :actions nil)
+
+    ;; 2. Correctly disable the pipe pairing by explicitly setting
+    ;;    both delimiters and then setting actions to nil.
+    (sp-local-pair "|" "|" :actions nil)))
