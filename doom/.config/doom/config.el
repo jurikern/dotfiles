@@ -27,24 +27,28 @@
 (set-frame-parameter (selected-frame) 'alpha '(97 95))
 (add-to-list 'default-frame-alist '(alpha 97 95))
 
-(use-package corfu
-  :init
-  (global-corfu-mode)
-  (setq corfu-auto t
-        corfu-auto-delay 0.2
-        corfu-auto-prefix 2)
-)
+;; (use-package corfu
+;;   :init
+;;   (global-corfu-mode)
+;;   (setq corfu-auto t
+;;         corfu-auto-delay 0.2
+;;         corfu-auto-prefix 2)
+;; )
 
-(use-package cape
-  :init
-  (dolist (capf '(cape-dabbrev cape-file cape-keyword cape-symbol))
-    (add-to-list 'completion-at-point-functions capf)))
+(after! eglot
+  ;; Tell eglot to use pipenv to run the server
+  (add-to-list 'eglot-server-programs
+               `(python-mode . ("pipenv" "run" "pyright-langserver" "--stdio"))))
+
+;; Fix that Corfu error from earlier if you haven't
+;; (after! cape
+;;   (setq completion-at-point-functions
+;;         (list #'cape-dabbrev #'cape-file #'cape-keyword)))
 
 (setq eglot-ignored-server-capabilities '(:documentHighlightProvider :hoverProvider :workspace/didChangeWorkspaceFolders))
 
 (fset #'jsonrpc--log-event #'ignore)
 (setq jsonrpc-debug-level 0)
-(setq eglot-events-buffer-size 0)
 (setq eglot-sync-connect nil)
 (setq eldoc-idle-delay 1.0)
 (setq eglot-send-changes-idle-time 0.5)
@@ -128,17 +132,36 @@
   :config
   (exec-path-from-shell-initialize))
 
-(setq eglot-server-programs
-      '((ruby-mode . ("ruby-lsp"))
-        (java-mode . ("~/dev/tools/jdtls/bin/jdtls"
-                      "-data" "~/src/java"))))
+;; (setq eglot-server-programs
+;;       '((ruby-mode . ("ruby-lsp"))
+;;         (java-mode . ("~/dev/tools/jdtls/bin/jdtls"
+;;                       "-data" "~/src/java"))))
+
+(after! eglot
+  (setq eglot-ignored-server-capabilities '(:workspace/didChangeWorkspaceFolders)))
+
+(with-eval-after-load 'eglot
+  (add-to-list 'eglot-server-programs
+               '(ruby-mode . ("ruby-lsp")))
+  
+  (add-to-list 'eglot-server-programs
+               `(java-mode . ("~/dev/tools/jdtls/bin/jdtls"
+                              "-data" ,(expand-file-name "~/src/java")
+                              "--jvm-arg=-Xmx2G")))
+
+  (add-to-list 'eglot-server-programs
+               '(python-mode . ("pipenv" "run" "pyright-langserver" "--stdio"))))
 
 (add-hook 'ruby-mode-hook #'eglot-ensure)
 (add-hook 'java-mode-hook #'eglot-ensure)
 
-(map! :map ruby-mode-map
+(after! ruby-mode
+  (setq-hook! 'ruby-mode-hook flycheck-checker 'lsp))
+
+(map! :after eglot
+      :map eglot-mode-map
       :localleader
-      :desc "Reconnect LSP (force reindex)" "w" #'eglot-force-reconnect
+      :desc "Reconnect LSP" "w" #'eglot-force-reconnect
       :desc "Format buffer" "f" #'eglot-format-buffer)
 
 (defun eglot-safe-reconnect ()
