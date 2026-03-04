@@ -1,5 +1,8 @@
 bindkey -v
 
+export LDFLAGS="-L/opt/homebrew/opt/libomp/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/libomp/include"
+
 export KUBECONFIG="$HOME/.kube/kubeconfig"
 
 alias ssh_arch="wezterm cli spawn --domain-name arch"
