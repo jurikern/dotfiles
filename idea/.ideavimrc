@@ -1,0 +1,54 @@
+let mapleader=" "
+set surround
+set multiple-cursors
+set commentary
+set argtextobj
+set easymotion
+set textobj-entire
+
+set clipboard+=unnamed
+
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set number
+set relativenumber
+
+" [SPC f] - File operations
+nnoremap <leader>ff :action GotoFile<CR>
+nnoremap <leader>fr :action RecentFiles<CR>
+
+" [SPC p] - Project operations (Projectile style)
+nnoremap <leader>pt :action ActivateProjectToolWindow<CR>
+
+" [SPC b] - Buffer/Tab operations
+nnoremap <leader>bb :action RecentFiles<CR>
+nnoremap <leader>bk :action CloseContent<CR>
+nnoremap <leader>bn :action NextTab<CR>
+nnoremap <leader>bp :action PreviousTab<CR>
+
+" [SPC c] - Code / LSP (Eglot style)
+nnoremap <leader>ca :action ShowIntentionActions<CR>
+nnoremap <leader>cr :action RenameElement<CR>
+nnoremap <leader>cf :action ReformatCode<CR>
+
+" [SPC s] - Search
+nnoremap <leader>ss :action SearchEverywhere<CR>
+nnoremap <leader>sp :action FindInPath<CR>
+
+" [SPC w] - Window management
+nnoremap <leader>wv :action SplitVertically<CR>
+nnoremap <leader>ws :action SplitHorizontally<CR>
+nnoremap <leader>ww :action NextSplitter<CR>
+nnoremap <leader>wd :action UnsplitAll<CR>
+nnoremap <leader>wh :action MoveTabLeft<CR>
+nnoremap <leader>wl :action MoveTabRight<CR>
+
+" [SPC g] - Git (Magit Lite)
+nnoremap <leader>gs :action Git.Status<CR>
+nnoremap <leader>gl :action Git.Log<CR>
+nnoremap <leader>gb :action Annotate<CR>
+
+" Escape with 'jk' (Optional, common for Vimmers)
+inoremap jk <Esc>
